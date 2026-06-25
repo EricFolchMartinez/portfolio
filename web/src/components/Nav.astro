@@ -1,0 +1,26 @@
+---
+const links = [
+  { label: "About", href: "#about" },
+  { label: "Projects", href: "#projects" },
+  { label: "Skills", href: "#skills" },
+  { label: "Ask AI", href: "#ask-ai" },
+  { label: "Contact", href: "#contact" },
+];
+---
+
+<header class="fixed inset-x-0 top-0 z-50 flex justify-center">
+  <nav
+    class="mt-5 hidden items-center gap-1 rounded-full border border-line bg-surface/70 px-2 py-1.5 backdrop-blur-md md:flex"
+  >
+    {
+      links.map((link) => (
+        <a
+          href={link.href}
+          class="rounded-full px-3.5 py-1.5 text-sm text-muted transition-colors hover:bg-surface-2 hover:text-ink"
+        >
+          {link.label}
+        </a>
+      ))
+    }
+  </nav>
+</header>

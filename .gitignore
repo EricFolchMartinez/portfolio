@@ -1,0 +1,25 @@
+# dependencies
+node_modules/
+ai-api/.venv/
+__pycache__/
+*.pyc
+
+# build output
+web/dist/
+.astro/
+
+# env / secrets
+.env
+*.env
+!.env.example
+
+# logs
+*.log
+npm-debug.log*
+
+# os / editor / tooling
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+

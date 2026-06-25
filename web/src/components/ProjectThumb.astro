@@ -1,0 +1,58 @@
+---
+import type { Project } from "../data/profile";
+
+interface Props {
+  project: Project;
+}
+const { project } = Astro.props;
+
+// Deterministic gradient pick from the slug so each project looks distinct
+// but the palette stays sober (dark + faint accent).
+const presets = [
+  ["#1a1a1a", "#0c0c0c"],
+  ["#181816", "#0a0a0a"],
+  ["#1b1714", "#0b0a09"], // faint warm
+  ["#14171b", "#0a0b0c"], // faint cool
+];
+const seed = [...project.slug].reduce((a, c) => a + c.charCodeAt(0), 0);
+const [from, to] = presets[seed % presets.length];
+const gid = `g-${project.slug}`;
+const initials = project.name
+  .split(/\s+/)
+  .map((w) => w[0])
+  .join("")
+  .slice(0, 2)
+  .toUpperCase();
+---
+
+<svg
+  viewBox="0 0 160 120"
+  class="h-full w-full"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label={`${project.name} thumbnail`}
+>
+  <defs>
+    <linearGradient id={gid} x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color={from} />
+      <stop offset="1" stop-color={to} />
+    </linearGradient>
+  </defs>
+  <rect width="160" height="120" fill={`url(#${gid})`} />
+  <!-- faint grid texture -->
+  <g stroke="#ffffff" stroke-opacity="0.04">
+    <line x1="0" y1="40" x2="160" y2="40" />
+    <line x1="0" y1="80" x2="160" y2="80" />
+    <line x1="53" y1="0" x2="53" y2="120" />
+    <line x1="106" y1="0" x2="106" y2="120" />
+  </g>
+  <circle cx="132" cy="28" r="34" fill="#d8a657" fill-opacity="0.06" />
+  <text
+    x="16"
+    y="74"
+    font-family="'Space Grotesk Variable', sans-serif"
+    font-size="40"
+    font-weight="700"
+    fill="#f5f4f0"
+    fill-opacity="0.92">{initials}</text>
+</svg>

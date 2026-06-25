@@ -1,0 +1,22 @@
+---
+import { profile } from "../data/profile";
+import ProjectRow from "./ProjectRow.astro";
+
+const projects = [...profile.projects].sort(
+  (a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured)),
+);
+---
+
+<section id="projects" class="py-16 md:py-24">
+  <div class="container-x">
+    <h2 class="display mb-10 text-4xl sm:text-5xl">
+      <span class="block">Recent</span>
+      <span class="ghost block">Projects</span>
+    </h2>
+
+    <!-- List scales cleanly to many projects; border-top on each row. -->
+    <div class="border-b border-line">
+      {projects.map((project) => <ProjectRow project={project} />)}
+    </div>
+  </div>
+</section>

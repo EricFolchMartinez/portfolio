@@ -1,0 +1,86 @@
+---
+import * as si from "simple-icons";
+import { profile } from "../data/profile";
+
+interface SimpleIcon {
+  title: string;
+  path: string;
+}
+
+// Map a skill label to a simple-icons key. Labels without a recognizable
+// brand logo fall back to a small accent dot (handled in markup).
+const ICONS: Record<string, string> = {
+  Python: "siPython",
+  FastAPI: "siFastapi",
+  "C / C++": "siCplusplus",
+  PHP: "siPhp",
+  TypeScript: "siTypescript",
+  JavaScript: "siJavascript",
+  Astro: "siAstro",
+  "Tailwind CSS": "siTailwindcss",
+  "React Native (Expo)": "siReact",
+  "HTML / CSS": "siHtml5",
+  Docker: "siDocker",
+  PostgreSQL: "siPostgresql",
+  MongoDB: "siMongodb",
+  "Git / GitHub": "siGithub",
+  Cloudflare: "siCloudflare",
+  Linux: "siLinux",
+  "OpenAI API": "siOpenai",
+};
+
+function iconFor(label: string): SimpleIcon | null {
+  const key = ICONS[label];
+  return key ? ((si as Record<string, SimpleIcon>)[key] ?? null) : null;
+}
+---
+
+<section id="skills" class="py-16 md:py-24">
+  <div class="container-x">
+    <h2 class="display mb-10 text-4xl sm:text-5xl">
+      <span class="block">Tools I</span>
+      <span class="ghost block">Work with</span>
+    </h2>
+
+    <!-- One cohesive panel, organized in columns, each item with its logo. -->
+    <div
+      class="grid gap-x-8 gap-y-10 rounded-2xl border border-line bg-surface/40 p-7 sm:grid-cols-2 lg:grid-cols-4 lg:p-9"
+    >
+      {
+        profile.skills.map((group) => (
+          <div>
+            <h3 class="mb-5 text-sm font-semibold uppercase tracking-wide text-accent">
+              {group.category}
+            </h3>
+            <ul class="space-y-3.5">
+              {group.items.map((item) => {
+                const icon = iconFor(item);
+                return (
+                  <li class="group flex items-center gap-3">
+                    {icon ? (
+                      <svg
+                        role="img"
+                        viewBox="0 0 24 24"
+                        class="h-[18px] w-[18px] shrink-0 fill-muted transition-colors group-hover:fill-ink"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d={icon.path} />
+                      </svg>
+                    ) : (
+                      <span class="flex h-[18px] w-[18px] shrink-0 items-center justify-center">
+                        <span class="h-1.5 w-1.5 rounded-full bg-accent/60" />
+                      </span>
+                    )}
+                    <span class="text-sm text-ink/80 transition-colors group-hover:text-ink">
+                      {item}
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

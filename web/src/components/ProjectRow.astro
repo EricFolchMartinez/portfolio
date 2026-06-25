@@ -1,0 +1,76 @@
+---
+import type { Project } from "../data/profile";
+import ProjectThumb from "./ProjectThumb.astro";
+
+interface Props {
+  project: Project;
+}
+const { project } = Astro.props;
+---
+
+<article
+  class="group flex flex-col gap-5 border-t border-line py-7 sm:flex-row sm:items-center sm:gap-7 sm:px-2"
+>
+  <!-- Thumbnail -->
+  <div
+    class="aspect-[16/10] w-full shrink-0 overflow-hidden rounded-xl border border-line sm:h-20 sm:w-32"
+  >
+    <ProjectThumb project={project} />
+  </div>
+
+  <!-- Body -->
+  <div class="min-w-0 flex-1">
+    <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+      <h3 class="font-display text-2xl font-bold tracking-tight">
+        {project.name}
+      </h3>
+      {project.featured && (
+        <span class="rounded-full bg-accent-soft px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-accent">
+          Featured
+        </span>
+      )}
+    </div>
+
+    <p class="mt-1 text-sm text-muted">{project.tagline}</p>
+
+    <ul class="mt-3 flex flex-wrap gap-1.5">
+      {
+        project.stack.map((tech) => (
+          <li class="rounded-md bg-surface-2 px-2 py-0.5 text-xs text-muted">
+            {tech}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <!-- Meta: year (plain text) clearly separated from links (interactive pills) -->
+  <div
+    class="flex shrink-0 flex-col items-start gap-3 sm:w-44 sm:items-end"
+  >
+    {project.period && (
+      <span class="font-display text-sm font-medium text-muted">
+        {project.period}
+      </span>
+    )}
+
+    {
+      project.links.length > 0 ? (
+        <div class="flex flex-wrap gap-2 sm:justify-end">
+          {project.links.map((link) => (
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1 rounded-full border border-line px-3 py-1.5 text-xs font-medium text-ink transition-colors hover:border-accent hover:text-accent"
+            >
+              {link.label} ↗
+            </a>
+          ))}
+        </div>
+      ) : (
+        <span class="text-xs text-muted">Private repo</span>
+      )
+    }
+  </div>
+</article>

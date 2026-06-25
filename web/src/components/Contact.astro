@@ -1,0 +1,37 @@
+---
+import { profile } from "../data/profile";
+
+// Email rendered as a labelled link, consistent with the social links.
+const contactLinks = [
+  { label: "Email", href: `mailto:${profile.email}` },
+  ...profile.socials,
+];
+---
+
+<section id="contact" class="border-t border-line py-16 md:py-24">
+  <div class="container-x">
+    <p class="eyebrow mb-4">Contact</p>
+    <h2 class="display max-w-3xl text-4xl sm:text-5xl">
+      <span class="block">Let's</span>
+      <span class="ghost block">Work together</span>
+    </h2>
+    <p class="mt-5 max-w-2xl text-lg text-muted">
+      Open to internships & junior roles in backend, full-stack and applied AI.
+    </p>
+
+    <div class="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3">
+      {
+        contactLinks.map((link) => (
+          <a
+            href={link.href}
+            target={link.label === "Email" ? undefined : "_blank"}
+            rel={link.label === "Email" ? undefined : "noopener noreferrer"}
+            class="text-lg font-medium text-muted underline-offset-4 transition-colors hover:text-ink hover:underline"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

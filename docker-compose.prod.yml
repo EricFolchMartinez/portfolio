@@ -1,0 +1,28 @@
+# Production stack for ericfolch.com (root domain).
+# Build & run on the Raspberry Pi:
+#   docker compose -f docker-compose.prod.yml up -d --build
+#
+# Only `web` is published to the host (localhost:3001); the Cloudflare Tunnel
+# route (root → localhost:3001) points here. `ai-api` is reachable only through
+# the internal docker network, behind Nginx's /api/ proxy.
+
+services:
+  ai-api:
+    build: ./ai-api
+    image: ericfolch-portfolio-ai-api
+    container_name: portfolio-ai-api
+    restart: unless-stopped
+    env_file:
+      - ./ai-api/.env
+    expose:
+      - "8000" # internal only — NOT published to the host
+
+  web:
+    build: ./web
+    image: ericfolch-portfolio-web
+    container_name: portfolio-web
+    restart: unless-stopped
+    depends_on:
+      - ai-api
+    ports:
+      - "127.0.0.1:3001:80" # localhost only, never the LAN

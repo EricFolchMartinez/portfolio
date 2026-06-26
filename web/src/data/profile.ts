@@ -65,7 +65,7 @@ export const profile: Profile = {
   headline: "Backend & AI-applied engineer.",
   headlineLines: ["Software", "Engineer"],
   intro:
-    "Computer Engineering student at UAB. Passionate about building full-stack systems and developing useful AI tools, always looking for ways to integrate smart features into solid backends.",
+    "Computer Science student at UAB. Passionate about building full-stack systems and developing useful AI tools, always looking for ways to integrate smart features into solid backends.",
   location: "Cerdanyola del Vallès, Barcelona",
   email: "eric.folch.2005@gmail.com",
   cvPath: "/cv.pdf",
@@ -76,7 +76,7 @@ export const profile: Profile = {
   ],
 
   about: [
-    "Computer Engineering student passionate about technological innovation. I define myself as a curious, self-taught, and adaptable person with a great ability to collaborate in a team. I enjoy designing and developing personal projects that require planning and creativity.",
+    "Computer Science student passionate about technological innovation. I define myself as a curious, self-taught, and adaptable person with a great ability to collaborate in a team. I enjoy designing and developing personal projects that require planning and creativity.",
     "My interest in 3D printing, nature, and sports provides me with a problem-solving mindset, allowing me to bring different approaches to the projects I participate in.",
   ],
 

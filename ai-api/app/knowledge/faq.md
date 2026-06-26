@@ -8,7 +8,7 @@ Q: Where is he based?
 A: In Cerdanyola del Vallès, in the Barcelona metropolitan area.
 
 Q: What is he studying?
-A: A Bachelor's Degree in Computer Engineering at the UAB; he is in his third year.
+A: A Bachelor's Degree in Computer Science at the UAB; he is in his third year.
 
 Q: What are his strongest technical areas?
 A: Backend development (Python / FastAPI) and applied AI — integrating LLMs into

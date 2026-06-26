@@ -2,7 +2,7 @@
 
 - Full name: Èric Folch Martínez.
 - Role: Backend & AI-applied engineer (in training).
-- Education: third-year student of the Bachelor's Degree in Computer Engineering
+- Education: third-year student of the Bachelor's Degree in Computer Science
   (Grau en Enginyeria Informàtica) at the Universitat Autònoma de Barcelona (UAB).
 - Based in: Cerdanyola del Vallès, in the Barcelona area (Catalonia, Spain).
 - Status: open to internships and junior roles in backend, full-stack, or applied AI.

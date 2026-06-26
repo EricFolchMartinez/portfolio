@@ -63,9 +63,9 @@ export const profile: Profile = {
   name: "Èric Folch",
   role: "Backend & AI-applied engineer",
   headline: "Backend & AI-applied engineer.",
-  headlineLines: ["Backend & AI", "Engineer"],
+  headlineLines: ["Software", "Engineer"],
   intro:
-    "Computer Engineering student at the UAB. I build full-stack systems and ship AI where it actually adds value — from cryptographic evidence certification to LLM-powered tooling.",
+    "Computer Engineering student at UAB. Passionate about building full-stack systems and developing useful AI tools, always looking for ways to integrate smart features into solid backends.",
   location: "Cerdanyola del Vallès, Barcelona",
   email: "eric.folch.2005@gmail.com",
   cvPath: "/cv.pdf",
@@ -76,8 +76,8 @@ export const profile: Profile = {
   ],
 
   about: [
-    "I'm a third-year Computer Engineering student at the Universitat Autònoma de Barcelona, focused on backend development, full-stack delivery and applied AI.",
-    "I like building things end to end: designing the API, containerizing the services, and self-hosting them on my own homelab behind a Cloudflare Tunnel. I care about clean architecture, security, and shipping software that solves a real problem — not demos.",
+    "Computer Engineering student passionate about technological innovation. I define myself as a curious, self-taught, and adaptable person with a great ability to collaborate in a team. I enjoy designing and developing personal projects that require planning and creativity.",
+    "My interest in 3D printing, nature, and sports provides me with a problem-solving mindset, allowing me to bring different approaches to the projects I participate in.",
   ],
 
   languages: [
@@ -95,15 +95,11 @@ export const profile: Profile = {
     },
     {
       category: "Frontend",
-      items: ["TypeScript", "JavaScript", "Astro", "Tailwind CSS", "React Native (Expo)", "HTML / CSS"],
+      items: ["JavaScript", "Astro", "Tailwind CSS", "React Native", "HTML / CSS"],
     },
     {
       category: "Infra & Data",
       items: ["Docker", "PostgreSQL", "MongoDB", "Git / GitHub", "Cloudflare", "Linux"],
-    },
-    {
-      category: "AI",
-      items: ["OpenAI API", "LLM integration", "RAG", "Prompt engineering", "Groq / Llama 3"],
     },
   ],
 
@@ -115,9 +111,8 @@ export const profile: Profile = {
       tagline: "Cryptographically certified photo evidence.",
       description:
         "Full-stack app that certifies photographic evidence with RSA digital signatures, issues PDF certificates with a QR for public verification, and auto-generates descriptions via the OpenAI API. Mobile app, REST backend and a public validator, all self-hosted in Docker.",
-      stack: ["React Native (Expo)", "FastAPI", "PostgreSQL", "Docker", "OpenAI API", "RSA"],
-      period: "2025",
-      featured: true,
+      stack: ["React Native", "FastAPI", "PostgreSQL", "Docker", "Python"],
+      period: "2026",
       links: [
         { label: "Live demo", href: "https://certishot.ericfolch.com", kind: "primary" },
         { label: "Validator", href: "https://validator.ericfolch.com", kind: "secondary" },
@@ -130,8 +125,10 @@ export const profile: Profile = {
       description:
         "A modular system that monitors product prices on e-commerce sites (Amazon) and exposes them through a REST API. Built with a clean service-oriented layout and deployed via Docker, with a Streamlit dashboard for quick inspection.",
       stack: ["Python", "FastAPI", "SQLAlchemy", "Streamlit", "Docker"],
-      period: "2024",
-      links: [],
+      period: "2025",
+      links: [
+        { label: "Live demo", href: "https://pricetracker.ericfolch.com", kind: "primary" },
+      ],
     },
     {
       slug: "ai-code-reviewer",
@@ -139,9 +136,47 @@ export const profile: Profile = {
       tagline: "Automated multi-language code review with Llama 3.",
       description:
         "A tool that reviews source code across multiple languages using Llama 3 through the Groq API, flagging security vulnerabilities and SOLID / Clean Code violations. Designed around fast inference and structured, actionable feedback.",
-      stack: ["Python", "Llama 3", "Groq API"],
-      period: "2024",
-      links: [],
+      stack: ["Python", "Llama 3", "Groq"],
+      period: "2025",
+      links: [
+        { label: "Live demo", href: "https://reviewer.ericfolch.com", kind: "primary" },
+      ],
+    },
+    {
+      slug: "acorde",
+      name: "Acorde",
+      tagline: "Auto-generated guitar tablature.",
+      description:
+        "An app that draws guitar tablatures for songs automatically. Cross-platform mobile client built with Flutter/Dart, backed by a Python service for the tab-generation logic.",
+      stack: ["Python", "Swift", "Dart", "Flutter"],
+      period: "2026",
+      links: [
+        { label: "Repo", href: "https://github.com/EricFolchMartinez/Acorde", kind: "primary" },
+      ],
+    },
+    {
+      slug: "helicopter-game",
+      name: "Helicopter Game",
+      tagline: "Classic arcade helicopter clone.",
+      description:
+        "A recreation of the classic helicopter arcade game, focused on simple, responsive game-loop mechanics and collision handling.",
+      stack: ["Python"],
+      period: "2026",
+      links: [
+        { label: "Repo", href: "https://github.com/EricFolchMartinez/Helicopter-game", kind: "primary" },
+      ],
+    },
+    {
+      slug: "tetris",
+      name: "Tetris",
+      tagline: "Tetris built from scratch in C/C++.",
+      description:
+        "A from-scratch implementation of Tetris, covering grid logic, piece rotation and collision detection, line clearing, and scoring.",
+      stack: ["C", "C++"],
+      period: "2026",
+      links: [
+        { label: "Repo", href: "https://github.com/EricFolchMartinez/Tetris", kind: "primary" },
+      ],
     },
   ],
 };

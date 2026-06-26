@@ -1,35 +1,84 @@
 ---
 import Chat from "./Chat.tsx";
+import { profile } from "../data/profile";
+
+const repo = profile.socials.find((s) => s.label === "GitHub")?.href ?? "#";
+
+const steps = [
+  {
+    title: "Static frontend, interactive island",
+    body: "The site is a static Astro build. Only this chat is a hydrated Preact island (loaded on scroll), so the page stays fast and SEO-friendly.",
+  },
+  {
+    title: "Server-side proxy holds the key",
+    body: "A FastAPI service holds the OpenAI key and talks to the model. The browser never sees it — the frontend only calls a same-origin /api/chat endpoint.",
+  },
+  {
+    title: "Curated context, not a vector DB",
+    body: "My bio, projects and skills fit in the prompt, so the assistant uses curated context injection instead of RAG — simpler, cheaper, and the right tool at this scale.",
+  },
+  {
+    title: "Rate limiting protects the budget",
+    body: "Per-IP limits, a global daily cap and a capped response length keep costs bounded and prevent abuse from draining the API budget.",
+  },
+];
 ---
 
 <section id="ask-ai" class="py-16 md:py-24">
-  <div class="container-x grid gap-8 md:grid-cols-[200px_1fr] md:gap-16">
-    <div>
-      <span class="inline-block h-1 w-10 bg-accent"></span>
-      <p class="rail-label mt-4">Ask AI</p>
-    </div>
+  <div class="container-x">
+    <h2 class="display text-4xl sm:text-5xl">
+      <span class="block">Ask my</span>
+      <span class="ghost block">AI anything</span>
+    </h2>
 
-    <div>
-      <h2 class="display text-4xl sm:text-5xl">
-        <span class="block">Ask my</span>
-        <span class="ghost block">AI anything</span>
-      </h2>
-      <p class="mt-5 max-w-2xl text-lg leading-relaxed text-muted">
-        A small assistant that answers questions about my background, projects and
-        skills. It runs on a self-hosted FastAPI proxy with curated context and
-        rate limiting — no API keys ever touch the browser.
-      </p>
+    <!-- Title spans the left edge; the body is indented to the centre column. -->
+    <div class="mt-8 md:grid md:grid-cols-[200px_1fr] md:gap-16">
+      <div class="md:col-start-2">
+        <p class="max-w-2xl text-lg leading-relaxed text-muted">
+          Meet my custom AI assistant, built to help you explore my portfolio. You can ask it anything about my tech stack, development experience, or university background.
+        </p>
 
-      <div class="mt-8">
-        <!-- Hydrated only when scrolled into view: keeps the page static & fast. -->
-        <Chat client:visible />
+        <div class="mt-8 max-w-2xl">
+          <!-- Hydrated only when scrolled into view: keeps the page static & fast. -->
+          <Chat client:visible />
+
+          <!-- Discreet, click-to-toggle technical note (native <details>, no JS). -->
+          <details id="how-it-works" class="group mt-5 border-t border-line pt-4">
+            <summary
+              class="flex w-fit cursor-pointer list-none items-center gap-1.5 text-xs text-muted transition-colors hover:text-ink [&::-webkit-details-marker]:hidden"
+            >
+              <span>How this chat works</span>
+              <span class="text-[10px] transition-transform duration-200 group-open:rotate-180">▾</span>
+            </summary>
+
+            <div class="mt-5">
+              <ol class="space-y-4">
+                {
+                  steps.map((step, i) => (
+                    <li class="flex gap-3">
+                      <span class="select-none pt-0.5 text-[11px] font-semibold text-accent">
+                        0{i + 1}
+                      </span>
+                      <div>
+                        <p class="text-sm font-medium text-ink/90">{step.title}</p>
+                        <p class="mt-0.5 text-xs leading-relaxed text-muted">{step.body}</p>
+                      </div>
+                    </li>
+                  ))
+                }
+              </ol>
+              <a
+                href={repo}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-5 inline-block text-xs font-medium text-muted underline-offset-2 transition-colors hover:text-ink hover:underline"
+              >
+                Read the source on GitHub ↗
+              </a>
+            </div>
+          </details>
+        </div>
       </div>
-
-      <p class="mt-4 text-xs text-muted">
-        <a href="#how-it-works" class="underline-offset-2 hover:underline">
-          How this chat works ↓
-        </a>
-      </p>
     </div>
   </div>
 </section>

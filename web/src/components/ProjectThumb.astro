@@ -1,10 +1,19 @@
 ---
+import { existsSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import type { Project } from "../data/profile";
 
 interface Props {
   project: Project;
 }
 const { project } = Astro.props;
+
+// Real screenshot wins if present at public/projects/<slug>.{png,jpg,jpeg,webp}.
+// Otherwise we fall back to a generated placeholder below.
+const EXTENSIONS = ["png", "jpg", "jpeg", "webp"];
+const publicDir = fileURLToPath(new URL("../../public/projects/", import.meta.url));
+const foundExt = EXTENSIONS.find((ext) => existsSync(`${publicDir}${project.slug}.${ext}`));
+const imageSrc = foundExt ? `/projects/${project.slug}.${foundExt}` : null;
 
 // Deterministic gradient pick from the slug so each project looks distinct
 // but the palette stays sober (dark + faint accent).
@@ -25,34 +34,48 @@ const initials = project.name
   .toUpperCase();
 ---
 
-<svg
-  viewBox="0 0 160 120"
-  class="h-full w-full"
-  xmlns="http://www.w3.org/2000/svg"
-  role="img"
-  aria-label={`${project.name} thumbnail`}
->
-  <defs>
-    <linearGradient id={gid} x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color={from} />
-      <stop offset="1" stop-color={to} />
-    </linearGradient>
-  </defs>
-  <rect width="160" height="120" fill={`url(#${gid})`} />
-  <!-- faint grid texture -->
-  <g stroke="#ffffff" stroke-opacity="0.04">
-    <line x1="0" y1="40" x2="160" y2="40" />
-    <line x1="0" y1="80" x2="160" y2="80" />
-    <line x1="53" y1="0" x2="53" y2="120" />
-    <line x1="106" y1="0" x2="106" y2="120" />
-  </g>
-  <circle cx="132" cy="28" r="34" fill="#d8a657" fill-opacity="0.06" />
-  <text
-    x="16"
-    y="74"
-    font-family="'Space Grotesk Variable', sans-serif"
-    font-size="40"
-    font-weight="700"
-    fill="#f5f4f0"
-    fill-opacity="0.92">{initials}</text>
-</svg>
+{
+  imageSrc ? (
+    <img
+      src={imageSrc}
+      alt={`${project.name} screenshot`}
+      class="h-full w-full object-cover"
+      loading="lazy"
+    />
+  ) : (
+    <svg
+      viewBox="0 0 160 120"
+      class="h-full w-full"
+      xmlns="http://www.w3.org/2000/svg"
+      role="img"
+      aria-label={`${project.name} thumbnail`}
+    >
+      <defs>
+        <linearGradient id={gid} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color={from} />
+          <stop offset="1" stop-color={to} />
+        </linearGradient>
+      </defs>
+      <rect width="160" height="120" fill={`url(#${gid})`} />
+      {/* faint grid texture */}
+      <g stroke="#ffffff" stroke-opacity="0.04">
+        <line x1="0" y1="40" x2="160" y2="40" />
+        <line x1="0" y1="80" x2="160" y2="80" />
+        <line x1="53" y1="0" x2="53" y2="120" />
+        <line x1="106" y1="0" x2="106" y2="120" />
+      </g>
+      <circle cx="132" cy="28" r="34" fill="#d8a657" fill-opacity="0.06" />
+      <text
+        x="16"
+        y="74"
+        font-family="'Space Grotesk Variable', sans-serif"
+        font-size="40"
+        font-weight="700"
+        fill="#f5f4f0"
+        fill-opacity="0.92"
+      >
+        {initials}
+      </text>
+    </svg>
+  )
+}

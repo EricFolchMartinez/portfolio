@@ -3,30 +3,33 @@ import { profile } from "../data/profile";
 ---
 
 <section id="about" class="py-16 md:py-24">
-  <div class="container-x grid gap-8 md:grid-cols-[200px_1fr] md:gap-16">
-    <div>
-      <span class="inline-block h-1 w-10 bg-accent"></span>
-      <p class="rail-label mt-4">About</p>
-    </div>
+  <div class="container-x">
+    <h2 class="display text-4xl sm:text-5xl">
+      <span class="block">About</span>
+      <span class="ghost block">Me</span>
+    </h2>
 
-    <div>
-      <div class="max-w-2xl space-y-5 text-xl leading-relaxed text-ink/85 md:text-2xl">
-        {profile.about.map((p) => <p>{p}</p>)}
-      </div>
+    <!-- Title spans the left edge; the body is indented to the centre column. -->
+    <div class="mt-10 md:grid md:grid-cols-[200px_1fr] md:gap-16">
+      <div class="md:col-start-2">
+        <div class="max-w-2xl space-y-4 text-base leading-relaxed text-ink/80 md:text-lg">
+          {profile.about.map((p) => <p>{p}</p>)}
+        </div>
 
-      <!-- Languages: given real weight, kept inside About. -->
-      <div class="mt-12 border-t border-line pt-8">
-        <p class="eyebrow mb-5">Languages</p>
-        <dl class="grid grid-cols-2 gap-x-8 gap-y-6 sm:grid-cols-4">
-          {
-            profile.languages.map((lang) => (
-              <div>
-                <dt class="font-display text-lg font-bold">{lang.name}</dt>
-                <dd class="mt-0.5 text-sm text-muted">{lang.level}</dd>
-              </div>
-            ))
-          }
-        </dl>
+        <!-- Languages: own block with card treatment for prominence. -->
+        <div class="mt-12">
+          <p class="eyebrow mb-5">Languages</p>
+          <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {
+              profile.languages.map((lang) => (
+                <div class="rounded-xl border border-line bg-surface/40 px-4 py-4">
+                  <p class="font-display text-xl font-bold">{lang.name}</p>
+                  <p class="mt-1 text-xs uppercase tracking-wide text-muted">{lang.level}</p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
       </div>
     </div>
   </div>

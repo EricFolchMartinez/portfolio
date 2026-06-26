@@ -4,11 +4,6 @@ const [bright, ghost] = profile.headlineLines;
 ---
 
 <section id="top" class="container-x pt-32 pb-16 md:pt-40 md:pb-20">
-  <p class="eyebrow mb-6 flex items-center gap-2">
-    <span class="inline-block h-1.5 w-1.5 rounded-full bg-accent"></span>
-    Available for internships
-  </p>
-
   <h1 class="display text-6xl sm:text-7xl lg:text-[8.5rem]">
     <span class="block">{bright}</span>
     <span class="ghost block">{ghost}</span>
@@ -27,7 +22,7 @@ const [bright, ghost] = profile.headlineLines;
     </a>
     <a
       href={profile.cvPath}
-      download
+      download="Eric-Folch-CV.pdf"
       class="rounded-full border border-line px-6 py-3 text-sm font-medium transition-colors hover:border-ink/40"
     >
       Download CV

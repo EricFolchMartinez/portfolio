@@ -7,18 +7,18 @@ interface SimpleIcon {
   path: string;
 }
 
-// Map a skill label to a simple-icons key. Labels without a recognizable
-// brand logo fall back to a small accent dot (handled in markup).
+// Map a skill label to a simple-icons key. Concepts without a brand logo
+// (e.g. "REST APIs") fall back to a neutral monochrome code glyph.
 const ICONS: Record<string, string> = {
   Python: "siPython",
   FastAPI: "siFastapi",
+  Java: "siOpenjdk",
   "C / C++": "siCplusplus",
   PHP: "siPhp",
-  TypeScript: "siTypescript",
   JavaScript: "siJavascript",
   Astro: "siAstro",
   "Tailwind CSS": "siTailwindcss",
-  "React Native (Expo)": "siReact",
+  "React Native": "siReact",
   "HTML / CSS": "siHtml5",
   Docker: "siDocker",
   PostgreSQL: "siPostgresql",
@@ -26,7 +26,6 @@ const ICONS: Record<string, string> = {
   "Git / GitHub": "siGithub",
   Cloudflare: "siCloudflare",
   Linux: "siLinux",
-  "OpenAI API": "siOpenai",
 };
 
 function iconFor(label: string): SimpleIcon | null {
@@ -44,7 +43,7 @@ function iconFor(label: string): SimpleIcon | null {
 
     <!-- One cohesive panel, organized in columns, each item with its logo. -->
     <div
-      class="grid gap-x-8 gap-y-10 rounded-2xl border border-line bg-surface/40 p-7 sm:grid-cols-2 lg:grid-cols-4 lg:p-9"
+      class="grid gap-x-8 gap-y-10 rounded-2xl border border-line bg-surface/40 p-7 sm:grid-cols-2 lg:grid-cols-3 lg:p-9"
     >
       {
         profile.skills.map((group) => (
@@ -67,9 +66,16 @@ function iconFor(label: string): SimpleIcon | null {
                         <path d={icon.path} />
                       </svg>
                     ) : (
-                      <span class="flex h-[18px] w-[18px] shrink-0 items-center justify-center">
-                        <span class="h-1.5 w-1.5 rounded-full bg-accent/60" />
-                      </span>
+                      <svg
+                        viewBox="0 0 24 24"
+                        class="h-[18px] w-[18px] shrink-0 fill-none stroke-muted transition-colors group-hover:stroke-ink"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d="M8 9l-3 3 3 3M16 9l3 3-3 3" />
+                      </svg>
                     )}
                     <span class="text-sm text-ink/80 transition-colors group-hover:text-ink">
                       {item}
